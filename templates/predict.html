@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  {% extends "base.html" %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}評論預測{% endblock title%}</title>
+</head>
+
+<body>
+  {% block content %}
+  <div class="pt-5" style="text-align:center; padding-left: 400px; padding-right: 400px;">
+    {% if comment == "" %}
+    <form method="post">
+      <h2 class="pb-3 fw-bolder">評論預測</h2>
+      <textarea class="form-control" name="comment" rows="10" placeholder="輸入評論....."></textarea>
+      <p class="py-2"></p>
+      <div style="display: flex; align-items: center; justify-content: center;">
+        <input type="submit" class="btn btn-outline-light" name="send" value="預測">
+        <div>
+          <span class="ps-3 h4">評論預測：</span>
+        </div>
+      </div>
+    </form>
+    {% else %}
+    <form method="post">
+      <h2 class="pb-3 fw-bolder">評論預測</h2>
+      <textarea class="form-control" name="comment" rows="10">{{comment}}</textarea>
+      <p class="py-2"></p>
+      <div style="display: flex; align-items: center; justify-content: center;">
+        <input type="submit" class="btn btn-outline-light" name="send" value="預測">
+        <div>
+          <span class="ps-3 h4 text-decoration-underline">評論預測：{{predictions}}</span>
+        </div>
+      </div>
+    </form>
+    {% endif %}
+  </div>
+  {% endblock content %}
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  {% extends "base.html" %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{category}}遊戲{% endblock title%}</title>
+</head>
+
+<body>
+  {% block content %}
+  <div class="container px-4 py-3 text-white" id="custom-cards">
+    <h2 class="pb-2 border-bottom fw-bolder">{{category}}</h2>
+    <h5 class="pb-2 border-bottom">瀏覽此分類在 Steam 上最新、最多人玩的遊戲</h5>
+    <form action="/category" method="post">
+      <div class="row row-cols-1 row-cols-md-3 g-4 text-black py-3">
+        {% for item in items %}
+        <div class="col">
+          <div class="card h-100">
+            <img src="{{ item['圖片位址']}}" class="card-img-top">
+            <div class="col p-2 d-flex flex-column position-static" style="justify-content: space-evenly;">
+              <h5 class="card-title fw-bolder">{{ item["名稱"]}}</h5>
+              <p class="card-text fw-bolder text-muted">{{ item["簡介"]}}</p>
+              <div style="display: flex; align-items: center; justify-content: space-around; flex: 100%;">
+                {% if item["價錢"] == '免費遊玩' %}
+                <a type="button" class="btn btn- btn-warning btn-sm col-6 mx-auto fw-bolder active"
+                  style="padding-left: 1.5px; width: 30%;" href="{{ item['商店']}}" target="_blank"><strong
+                    class="d-inline-block text-white">{{ item["價錢"]}}</strong></a>
+                <a href="/game?name={{ item['名稱']}}" class="btn btn-primary btn-sm col-6 mx-auto fw-bolder"
+                  style="width: 40%;">詳細內容</a>
+                {% else %}
+                <a type="button" class="btn btn- btn-warning btn-sm col-6 mx-auto fw-bolder active"
+                  style="padding-left: 1.5px; width: 30%;" href="{{ item['商店']}}" target="_blank"><strong
+                    class="d-inline-block text-white">NT ${{ item["價錢"]}}</strong></a>
+                <a href="/game?name={{ item['名稱']}}" class="btn btn-primary btn-sm col-6 mx-auto fw-bolder"
+                  style="width: 40%;">詳細內容</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </form>
+    <div style="padding-top: 15px; display: flex; justify-content: center; align-items: center;">
+      <div class="fw-bolder">
+        {{ paginate.links }}
+      </div>
+    </div>
+  </div>
+  {% endblock content%}
+</body>
+
+</html>

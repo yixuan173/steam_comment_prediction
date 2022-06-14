@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  {% extends "base.html" %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Steam{% endblock title%}</title>
+</head>
+
+<body>
+  {% block content%}
+  <main style="padding-left: 250px; padding-right: 250px; padding-top: 10px;" class="bg-dark text-white">
+    <h2 class="pb-2 border-bottom fw-bolder">精選與推薦</h2>
+    <div class="bd-example" style="padding-top: 10px;">
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class=""
+            aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"
+            class=""></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"
+            class=""></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" class=""
+            aria-label="Slide 4"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"
+            class=""></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"
+            class=""></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="6" class=""
+            aria-label="Slide 7"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="7" aria-label="Slide 8"
+            class="active" aria-current="true"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="8" class=""
+            aria-label="Slide 9"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item">
+            <a href="https://store.steampowered.com/app/924970/_/" target="_blank">
+              <img src="{{ url_for('static', filename='img/C0.jpg') }}"
+                class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="200" height="500" title="喋血復仇">
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="https://store.steampowered.com/app/578080/PUBG_BATTLEGROUNDS/" target="_blank">
+              <img src="{{ url_for('static', filename='img/C2.jpg') }}"
+                class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="200" height="500" title="PUBG">
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="https://store.steampowered.com/app/381210/Dead_by_Daylight/" target="_blank">
+              <img src="{{ url_for('static', filename='img/C3.jpg') }}"
+                class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="200" height="500"
+                title="Dead by Daylight">
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="https://store.steampowered.com/app/1085660/2/" target="_blank">
+              <img src="{{ url_for('static', filename='img/C1.jpg') }}"
+                class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="200" height="500" title="天命2">
+            </a>
+
+          </div>
+          <div class="carousel-item">
+            <a href="https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/" target="_blank">
+              <img src="{{ url_for('static', filename='img/C4.jpg') }}"
+                class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="200" height="500"
+                title="Counter-Strike: Global Offensive">
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="https://store.steampowered.com/app/1487390/ANVIL/" target="_blank">
+              <img src="{{ url_for('static', filename='img/C5.jpg') }}"
+                class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="200" height="500" title="ANVIL">
+            </a>
+          </div>
+          <div class="carousel-item  active">
+            <a href="https://store.steampowered.com/app/1517290/_2042/" target="_blank">
+              <img src="{{ url_for('static', filename='img/C6.jpg') }}"
+                class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="200" height="500"
+                title="戰地風雲™ 2042">
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="https://store.steampowered.com/app/1149460/_ICARUS/?snr=1_4_4__118" target="_blank">
+              <img src="{{ url_for('static', filename='img/C7.jpg') }}"
+                class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="200" height="500"
+                title="翼星求生 ICARUS">
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="https://store.steampowered.com/app/289070/Sid_Meiers_Civilization_VI/" target="_blank">
+              <img src="{{ url_for('static', filename='img/C8.jpg') }}"
+                class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="200" height="500"
+                title="Sid Meier’s Civilization® VI">
+            </a>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </main>
+  {% endblock content%}
+</body>
+
+</html>

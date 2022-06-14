@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    {% extends "base.html" %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}詳細內容{% endblock title%}</title>
+</head>
+
+<body>
+    {% block content %}
+    <!-- 內容 -->
+    <div class="py-4 text-white" style="padding-left: 230px; padding-right: 230px;">
+        {% for item in items %}
+        <h2 class="fw-bolder" style="padding-left: 10px">{{ item["名稱"]}}</h2>
+        <div class=" bg-dark" style="max-width: 1050px; text-align: start;">
+            <div class="row"
+                style="float: 100%; margin-right: calc(var(--bs-gutter-x) * 0); margin-left: calc(var(--bs-gutter-x) * 0);">
+                <div style="float: left; width: 67%;">
+                    <img src="data:;base64,{{ img_stream }}" style="width: 700px; height: 372px;">
+                </div>
+                <div
+                    style="float: right; width: 33%; padding-right: calc(var(--bs-gutter-x) * 0); padding-left: calc(var(--bs-gutter-x) * .5);">
+                    <div style="padding-left: 7px;">
+                        <a href="{{ item['商店']}}" target="_blank"><img src="{{ item['圖片位址']}}"
+                                style="width: 338; height: 151px;"></a>
+                        <p style="color: #c6d4df; font-size: 13px; padding-top: 12px;">{{ item["簡介"]}}</p>
+                        <div style="display: flex; align-items: center; justify-content: flex-start;">
+                            {% if item["所有評論"] == '褒貶不一' %}
+                            <h6><small style="color: #556772; padding-right: 50px; font-size: 10px;">所有評論：</small></h6>
+                            <h6 class="tt" data-bs-placement="top" title="{{ item['評論彈出']}}"><small
+                                    style="color: #B9A074; font-size: 10px;">{{ item["所有評論"]}} </small><small
+                                    style="color: #556772; font-size: 10px;">{{ item["評論數量"]}}</small></h6>
+                            {% else %}
+                            <h6><small style="color: #556772; padding-right: 50px; font-size: 10px;">所有評論：</small></h6>
+                            <h6 class="tt" data-bs-placement="top" title="{{ item['評論彈出']}}"><small
+                                    style="color: #66C0F4; font-size: 10px;">{{ item["所有評論"]}} </small><small
+                                    style="color: #556772; font-size: 10px;">{{ item["評論數量"]}}</small></h6>
+                            {% endif %}
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: flex-start;">
+                            <h6><small style="color: #556772; padding-right: 50px; font-size: 10px;">發行日期：</small></h6>
+                            <h6><small style="color: #8f98a0; font-size: 10px;">{{ item["發行日期"]}}</small></h6>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: flex-start;">
+                            <h6><small style="color: #556772; padding-right: 4rem; font-size: 10px;">發行商：</small></h6>
+                            <h6><small style="color: #67c1f5; font-size: 10px;">{{ item["發行商"]}}</small></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endblock content %}
+    {% block js %}
+    <script>
+        const tooltips = document.querySelectorAll('.tt')
+        tooltips.forEach(t => {
+            new bootstrap.Tooltip(t)
+        })
+    </script>
+    {% endblock js %}
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    {% extends "base.html" %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block head%}
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+    {% endblock head%}
+    <title>{% block title %}文字雲產生器{% endblock title%}</title>
+  </head>
+
+  <body>
+    {% block content %}
+    <div
+      style="
+        padding-left: 400px;
+        padding-right: 400px;
+        text-align: center;
+        padding-top: 2.25rem;
+      "
+    >
+      {% if img_stream == "" %}
+      <h2 class="pb-3 fw-bolder">自訂文字雲</h2>
+      <img
+        src="{{ url_for('static', filename='img/steam_cloud.jpg') }}"
+        class="py-2"
+        style="width: 700px; height: 350px"
+      />
+      <p class="py-2"></p>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+        "
+      >
+        <input
+          class="form-control"
+          style="width: 50%"
+          id="file"
+          name="loadfile"
+          type="file"
+          ,
+          accept=".xlsx"
+        /><br />
+        <form action="/wordcloud" method="post">
+          <input
+            type="submit"
+            class="btn btn-outline-light"
+            name="word"
+            value="產生文字雲"
+          />
+        </form>
+      </div>
+      <p class="py-2"></p>
+      {% else %}
+      <h2 class="pb-3 fw-bolder">自訂文字雲</h2>
+      <img
+        src="data:;base64,{{ img_stream }}"
+        style="width: 700px; height: 350px"
+      />
+      <p class="py-2"></p>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+        "
+      >
+        <input
+          class="form-control"
+          style="width: 50%"
+          id="file"
+          name="loadfile"
+          type="file"
+          ,
+          accept=".xlsx"
+        /><br />
+        <form action="/wordcloud" method="post">
+          <input
+            type="submit"
+            class="btn btn-outline-light"
+            name="word"
+            value="產生文字雲"
+          />
+        </form>
+      </div>
+      <p class="py-2"></p>
+      {% endif %}
+    </div>
+    <script>
+      // 處理上傳文件
+      $("#file").change(function (e) {
+        var files = e.target.files;
+        var formFile = new FormData();
+        formFile.append("file", files[0]);
+        $.ajax({
+          url: "/upload_file",
+          data: formFile,
+          type: "post",
+          dataType: "json",
+          cache: false,
+          processData: false,
+          contentType: false,
+          success: function (result) {
+            alert(result + "，上傳成功！！");
+          },
+        });
+      });
+    </script>
+    {% endblock content %}
+  </body>
+</html>

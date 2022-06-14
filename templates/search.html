@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    {% extends "base.html" %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}搜尋{% endblock title%}</title>
+</head>
+
+<body>
+    {% block content %}
+    <div class="container px-4 py-4 text-white">
+        {% if count == 0 %}
+        <h2 class="pb-2 border-bottom fw-bolder">搜尋結果...</h2>
+        <h5 class="pb-2 ">目前顯示的是以下字詞的搜尋結果：{{search}}</h5>
+        <h5 class="pb-2 ">尚未搜尋到符合項目。</h5>
+        {% else %}
+        <h2 class="pb-2 border-bottom fw-bolder">搜尋結果...</h2>
+        <h5 class="pb-2 border-bottom">目前顯示的是以下字詞的搜尋結果：{{search}}</h5>
+        <h5 class="pb-2 ">{{count}} 項相符的搜尋結果。</h5>
+        {% for item in items %}
+        <div class="row mb-2 text-black" style="padding: 20px 200px 0px 200px;">
+            <div>
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-white"
+                    style="height: 230px;">
+                    <div class="col p-2 d-flex flex-column position-static" style="justify-content: space-evenly;">
+                        <div style="display: flex; align-items: center; justify-content: flex-start;">
+                            <button type="button" class="btn btn-success btn-sm" disabled><strong
+                                    class="d-inline-block text-white">{{ item["類別"]}}</strong></button>
+                            {% if item["價錢"] == '免費遊玩' %}
+                            <div style="padding-left: 5px;"><button type="button" class="btn btn- btn-warning btn-sm"
+                                    disabled><strong class="d-inline-block text-white">{{ item["價錢"]}}</strong></button>
+                            </div>
+                            {% else %}
+                            <div style="padding-left: 5px;"><button type="button" class="btn btn- btn-warning btn-sm"
+                                    disabled><strong class="d-inline-block text-white">NT ${{
+                                        item["價錢"]}}</strong></button></div>
+                            {% endif %}
+                        </div>
+                        <h4 class="mb-1 fw-bolder" style="padding-left: 3px; padding-top: 5px;">{{ item["名稱"]}}</h4>
+                        <p class="card-text mb-2 fw-bolder text-muted" style="font-size: 14.7px;">{{ item["簡介"]}}</p>
+                        <a href="/game?name={{ item['名稱']}}"
+                            class="btn btn-primary btn-sm col-6 mx-auto fw-bolder">詳細內容</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img src="{{ item['圖片位址']}}" class="bd-placeholder-img" width="360" height="230">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    {% endblock content %}
+</body>
+
+</html>
